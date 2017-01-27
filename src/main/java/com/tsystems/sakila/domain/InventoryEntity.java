@@ -11,11 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "inventory")
-@Data
 public class InventoryEntity {
 
   @Id
@@ -30,5 +27,31 @@ public class InventoryEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "rentalId")
   private RentalEntity rental;
+
+  public Long getInventoryId() {
+    return inventoryId;
+  }
+
+  public void setInventoryId(Long inventoryId) {
+    this.inventoryId = inventoryId;
+  }
+
+  public StoreEntity getStore() {
+    return store;
+  }
+
+  public void setStore(StoreEntity store) {
+    this.store = store;
+  }
+
+  public RentalEntity getRental() {
+    return rental;
+  }
+
+  public void setRental(RentalEntity rental) {
+    this.rental = rental;
+  }
+
+
 
 }
