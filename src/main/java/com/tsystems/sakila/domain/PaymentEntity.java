@@ -48,16 +48,4 @@ public class PaymentEntity {
 	@Column(name = "last_update")
 	private Instant lastUpdate;
 
-	public PaymentEntity(Integer id, CustomerEntity customer, StaffEntity staff, RentalEntity rentalId, Integer amount,
-			Instant paymentDate, Instant lastUpdate) {
-		super();
-		this.id = id;
-		this.customer = customer;
-		this.staff = staff;
-		this.rentalId = rentalId;
-		this.amount = amount;
-		this.paymentDate = paymentDate;
-		this.lastUpdate = lastUpdate;
-	}
-
 }

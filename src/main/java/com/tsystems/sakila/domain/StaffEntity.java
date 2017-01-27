@@ -55,19 +55,4 @@ public class StaffEntity {
 	@Column(name = "last_update")
 	private Instant lastUpdate;
 
-	public StaffEntity(Integer staffId, String firstName, String lastName, AddressEntity addres, String email,
-			StoreEntity store, Integer active, String userName, String password, Instant lastUpdate) {
-		super();
-		this.staffId = staffId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.addres = addres;
-		this.email = email;
-		this.store = store;
-		this.active = active;
-		this.userName = userName;
-		this.password = password;
-		this.lastUpdate = lastUpdate;
-	}
-
 }
