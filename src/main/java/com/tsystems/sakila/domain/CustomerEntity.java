@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -28,12 +30,18 @@ public class CustomerEntity {
   @Column(name = "email")
   private String email;
 
-  // TODO: mapear relacion bien
-
   @Column(name = "address_id", nullable = false)
   private Integer addressId;
 
   @Column(name = "store_id", nullable = false)
   private Integer storeId;
+
+  @ManyToOne
+  @JoinColumn(name = "addressId")
+  private AddressEntity address;
+
+  @ManyToOne
+  @JoinColumn(name = "storeId")
+  private StoreEntity rental;
 
 }
