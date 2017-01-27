@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 public class StoreEntity {
 
@@ -12,13 +14,19 @@ public class StoreEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer storeId;
 
-  // TODO: mapear relaciones
-
   @Column(name = "manager_staff_id")
   private Integer managerStaffId;
 
   @Column(name = "address_id")
   private Integer addressId;
+
+  // @ManyToMany(fetch = FetchType.LAZY, mappedBy = "staffId")
+  // private StaffEntity staff;
+
+  @ManyToOne
+  @JoinColumn(name = "addresId")
+  private AddressEntity address;
+
 
 
 }
