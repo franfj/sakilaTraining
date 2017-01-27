@@ -23,6 +23,7 @@ public class InventoryEntity {
   @Column(name = "inventory_id")
   private Long inventoryId;
 
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(columnDefinition = "store_id")
   private StoreEntity store;
