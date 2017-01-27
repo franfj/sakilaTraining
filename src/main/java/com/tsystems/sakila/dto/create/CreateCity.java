@@ -6,5 +6,5 @@ import lombok.Data;
 public class CreateCity {
 
   private String city;
-  private Long countryId;
+  private Integer countryId;
 }

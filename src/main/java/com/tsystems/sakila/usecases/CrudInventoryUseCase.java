@@ -37,7 +37,7 @@ public class CrudInventoryUseCase {
 
   public Inventory getInventoryById(Integer id) {
     Inventory newInventory = new Inventory();
-    newInventory.setInventoryId(inventoryRepository.findByInventoryId(id).getInventoryId());
+    newInventory.setInventoryId(inventoryRepository.findOne(id).getInventoryId());
 
     return newInventory;
   }
