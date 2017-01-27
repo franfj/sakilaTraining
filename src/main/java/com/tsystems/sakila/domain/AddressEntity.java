@@ -51,7 +51,5 @@ public class AddressEntity {
     @JoinColumn(name = "city_id")
     private CountryEntity city;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="customerId")
-    private List<CustomerEntity> customers;
     
 }
