@@ -3,6 +3,7 @@ package com.tsystems.sakila.usecases;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tsystems.sakila.domain.CityEntity;
@@ -16,6 +17,7 @@ public class CrudCityUsercase {
 
   private final CityRepository cityRepository;
 
+  @Autowired
   public CrudCityUsercase(CityRepository cityRepository) {
     super();
     this.cityRepository = cityRepository;
