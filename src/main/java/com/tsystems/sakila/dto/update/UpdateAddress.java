@@ -8,7 +8,7 @@ public class UpdateAddress {
   private String address;
   private String address2;
   private String district;
-  private Long cityId;
+  private Integer cityId;
   private String postalCode;
   private String phone;
 }
