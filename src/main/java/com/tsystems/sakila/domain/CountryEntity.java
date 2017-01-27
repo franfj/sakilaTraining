@@ -30,8 +30,7 @@ public class CountryEntity {
     @Column(name = "country")
     private String country;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="countryId")
-    private List<CityEntity> cities;
+    
 	
 
 }
