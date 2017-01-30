@@ -48,7 +48,7 @@ public class CrudCountryUsercase {
 
   }
 
-  public Country updateCity(UpdateCountry updateCountry, Integer idCountry) {
+  public Country updateCountry(UpdateCountry updateCountry, Integer idCountry) {
 
     CountryEntity countryToUpdate = countryRepository.findOne(idCountry);
     Country countryToReturn = new Country();

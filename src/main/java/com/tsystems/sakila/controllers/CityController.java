@@ -1,11 +1,13 @@
 package com.tsystems.sakila.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import com.tsystems.sakila.dto.create.CreateCity;
 import com.tsystems.sakila.dto.update.UpdateCity;
 import com.tsystems.sakila.usecases.CrudCityUsercase;
 
+@Controller
 public class CityController {
 
   private final CrudCityUsercase crudCityUsercase;
