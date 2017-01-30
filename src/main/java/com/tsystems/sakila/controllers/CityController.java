@@ -1,11 +1,19 @@
 package com.tsystems.sakila.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tsystems.sakila.dto.City;
 import com.tsystems.sakila.dto.create.CreateCity;
 import com.tsystems.sakila.dto.update.UpdateCity;
 import com.tsystems.sakila.usecases.CrudCityUsercase;
 
+@RestController
+@RequestMapping(value = "city")
 public class CityController {
 
   private final CrudCityUsercase crudCityUsercase;
@@ -16,8 +24,9 @@ public class CityController {
     this.crudCityUsercase = crudCityUsercase;
   }
 
-  public void getCities() {
-    System.out.println(crudCityUsercase.findAll());
+  @RequestMapping(method = RequestMethod.GET)
+  public List<City> getCities() {
+    return crudCityUsercase.findAll();
   }
 
   public void getCityById(Integer id) {
@@ -35,6 +44,5 @@ public class CityController {
   public void removeCity(Integer id) {
     System.out.println("Eliminado city: " + id);
   }
-
 
 }

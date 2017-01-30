@@ -21,6 +21,7 @@ public class CityEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "city_id")
   private Integer id;
 
   @Column(name = "city")

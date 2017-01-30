@@ -1,5 +1,7 @@
 package com.tsystems.sakila.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,13 +22,12 @@ public class InventoryEntity {
   @Column(name = "inventory_id")
   private Long inventoryId;
 
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(columnDefinition = "store_id")
   private StoreEntity store;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "rentalId")
-  private RentalEntity rental;
+  private List<RentalEntity> rental;
 
   public Long getInventoryId() {
     return inventoryId;
@@ -44,14 +45,12 @@ public class InventoryEntity {
     this.store = store;
   }
 
-  public RentalEntity getRental() {
+  public List<RentalEntity> getRental() {
     return rental;
   }
 
-  public void setRental(RentalEntity rental) {
+  public void setRental(List<RentalEntity> rental) {
     this.rental = rental;
   }
-
-
 
 }

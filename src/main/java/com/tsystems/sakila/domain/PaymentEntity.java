@@ -19,45 +19,30 @@ import lombok.Data;
 @Table(name = "payment")
 public class PaymentEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "payment_id")
-	private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "payment_id")
+  private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(columnDefinition = "customer_id")
-	@Column(name = "customer_id")
-	private CustomerEntity customer;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(columnDefinition = "customer_id")
+  private CustomerEntity customer;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(columnDefinition = "staff_id")
-	@Column(name = "staff_id")
-	private StaffEntity staff;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(columnDefinition = "staff_id")
+  private StaffEntity staff;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(columnDefinition = "rental_id")
-	@Column(name = "rental_id")
-	private RentalEntity rentalId;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(columnDefinition = "rental_id")
+  private RentalEntity rentalId;
 
-	@Column(name = "amount")
-	private Integer amount;
+  @Column(name = "amount")
+  private Integer amount;
 
-	@Column(name = "payment_date")
-	private Instant paymentDate;
+  @Column(name = "payment_date")
+  private Instant paymentDate;
 
-	@Column(name = "last_update")
-	private Instant lastUpdate;
-
-	public PaymentEntity(Integer id, CustomerEntity customer, StaffEntity staff, RentalEntity rentalId, Integer amount,
-			Instant paymentDate, Instant lastUpdate) {
-		super();
-		this.id = id;
-		this.customer = customer;
-		this.staff = staff;
-		this.rentalId = rentalId;
-		this.amount = amount;
-		this.paymentDate = paymentDate;
-		this.lastUpdate = lastUpdate;
-	}
+  @Column(name = "last_update")
+  private Instant lastUpdate;
 
 }

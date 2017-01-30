@@ -1,10 +1,15 @@
 package com.tsystems.sakila.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.tsystems.sakila.dto.Customer;
 import com.tsystems.sakila.usecases.CrudCustomerUseCase;
 
+@RestController
+@RequestMapping(value = "/customer")
 public class CustomerController {
 
   public final CrudCustomerUseCase crudCustomerUseCase;
@@ -29,6 +34,7 @@ public class CustomerController {
 
   }
 
+  @RequestMapping(method = RequestMethod.GET)
   public void getAllCustomers() {
 
     System.out.println("Listado de todos los customers " + crudCustomerUseCase.getAllCustomers());

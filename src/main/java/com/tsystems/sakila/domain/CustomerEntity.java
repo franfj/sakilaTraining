@@ -30,18 +30,12 @@ public class CustomerEntity {
   @Column(name = "email")
   private String email;
 
-  @Column(name = "address_id", nullable = false)
-  private Integer addressId;
-
-  @Column(name = "store_id", nullable = false)
-  private Integer storeId;
-
   @ManyToOne
   @JoinColumn(name = "addressId")
   private AddressEntity address;
 
   @ManyToOne
   @JoinColumn(name = "storeId")
-  private StoreEntity rental;
+  private StoreEntity store;
 
 }
