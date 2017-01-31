@@ -34,7 +34,7 @@ public class PaymentEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(columnDefinition = "rental_id")
-  private RentalEntity rentalId;
+  private RentalEntity rental;
 
   @Column(name = "amount")
   private Integer amount;
