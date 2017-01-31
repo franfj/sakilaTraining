@@ -1,6 +1,10 @@
 package com.tsystems.sakila.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,39 +24,38 @@ public class CustomerController {
     this.crudCustomerUseCase = crudCustomerUseCase;
   }
 
-  public void createCustomer(Customer customerToCreate) {
+  // @RequestMapping(value = "/{name}", method = RequestMethod.POST)
+  // public ResponseEntity<Customer> createCustomer(@RequestBody Customer customerToCreate) {
+  //
+  // return new ResponseEntity<Customer>(crudCustomerUseCase.createCustomer(customerToCreate),
+  // HttpStatus.CREATED);
+  // }
 
-    System.out.println("Voy a crear un customer");
-    crudCustomerUseCase.createCustomer(customerToCreate);
+  @RequestMapping(value = "/{customerId:\\d+}", method = RequestMethod.GET)
+  public Customer getCustomerById(@PathVariable("customerId") Integer customerId) {
 
-  }
-
-  public void getCustomerById(Integer customerId) {
-
-    System.out.println("Obtener el customer con id " + customerId + " = "
-        + crudCustomerUseCase.getCustomer(customerId));
-
+    return crudCustomerUseCase.getCustomer(customerId);
   }
 
   @RequestMapping(method = RequestMethod.GET)
-  public void getAllCustomers() {
+  public List<Customer> getAllCustomers() {
 
-    System.out.println("Listado de todos los customers " + crudCustomerUseCase.getAllCustomers());
-
-  }
-
-  public void updateCustomer(Integer customerId, Customer customerToUpdate) {
-
-    System.out.println("Actualizar customer con id = " + customerId);
-    crudCustomerUseCase.updateCustomer(customerId, customerToUpdate);
+    return crudCustomerUseCase.getAllCustomers();
 
   }
 
-  public void delteCustomer(Integer customerId) {
+  @RequestMapping(value = "/{customerId:\\d+}", method = RequestMethod.PUT)
+  public Customer updateCustomer(@PathVariable("customerId") Integer customerId,
+      @RequestBody Customer customerToUpdate) {
 
-    System.out.println("Borrado del customer con id = " + customerId);
+    return crudCustomerUseCase.updateCustomer(customerId, customerToUpdate);
+
+  }
+
+  @RequestMapping(value = "/{customerId:\\d+}", method = RequestMethod.DELETE)
+  public void delteCustomer(@PathVariable("customerId") Integer customerId) {
+
     crudCustomerUseCase.deleteCustomer(customerId);
-
   }
 
 }
