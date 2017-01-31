@@ -29,6 +29,7 @@ public class CrudCountryUsercase {
     Country target = new Country();
 
     countryToReturn = countryRepository.findOne(countryId);
+    target.setId(countryToReturn.getId());
     target.setCountry(countryToReturn.getCountry());
 
     return target;
@@ -65,6 +66,7 @@ public class CrudCountryUsercase {
     List<Country> countriesToReturn = new LinkedList<>();
     for (CountryEntity country : countryList) {
       Country countryToAdd = new Country();
+      countryToAdd.setId(country.getId());
       countryToAdd.setCountry(country.getCountry());
       countriesToReturn.add(countryToAdd);
     }

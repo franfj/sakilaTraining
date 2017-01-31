@@ -29,6 +29,7 @@ public class CrudAddressUsercase {
     Address target = new Address();
 
     addressToReturn = addressRepository.findOne(addressId);
+    target.setId(addressToReturn.getId());
     target.setAddress(addressToReturn.getAddress());
     target.setAddress2(addressToReturn.getAddress2());
     target.setCityId(addressToReturn.getCityId());
@@ -90,6 +91,7 @@ public class CrudAddressUsercase {
     List<Address> addressesToReturn = new LinkedList<>();
     for (AddressEntity address : addressList) {
       Address addressToAdd = new Address();
+      addressToAdd.setId(address.getId());
       addressToAdd.setAddress(address.getAddress());
       addressToAdd.setAddress2(address.getAddress2());
       addressToAdd.setCityId(address.getCityId());
