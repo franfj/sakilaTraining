@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.tsystems.sakila.domain.PaymentEntity;
 import com.tsystems.sakila.dto.Payment;
 import com.tsystems.sakila.dto.create.CreatePayment;
 import com.tsystems.sakila.dto.update.UpdatePayment;
 import com.tsystems.sakila.repositories.PaymentRepository;
 
+@Component
 public class CrudPaymentUseCase {
 
   private final PaymentRepository paymentRepository;
@@ -60,16 +63,20 @@ public class CrudPaymentUseCase {
   }
 
 
-  public List<Payment> findPaymentsByCustomerAndAmountGreaterThanOne(Integer customerId) {
+  public List<Payment> findPaymentsByCustomerAndAmountGreaterThanOne(Integer customerId,
+      Integer amount) {
     List<Payment> result = new ArrayList<>();
     List<PaymentEntity> source =
-        paymentRepository.findPaymentsByCustomerAndAmountGreaterThanOne(customerId);
+        paymentRepository.findPaymentsByCustomerAndAmountGreaterThanOne(customerId, amount);
 
     for (PaymentEntity paymentEntity : source) {
       Payment newPayment = new Payment();
 
       newPayment.setAmount(paymentEntity.getAmount());
       newPayment.setId(paymentEntity.getId());
+      newPayment.setRentalId(paymentEntity.getRentalId());
+      newPayment.setStaffId(paymentEntity.getStaffId());
+      newPayment.setCustomerId(paymentEntity.getCustomerId());
 
       result.add(newPayment);
     }

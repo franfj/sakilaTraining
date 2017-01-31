@@ -2,9 +2,12 @@ package com.tsystems.sakila.controllers;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tsystems.sakila.dto.Payment;
@@ -25,10 +28,10 @@ public class PaymentController {
   }
 
 
-  @RequestMapping(value = "/customer/{id}")
+  @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
   public List<Payment> findPaymentsByCustomerAndAmountGreaterThanOne(
-      @PathVariable("id") Integer customerId) {
-    return crudPaymentUseCase.findPaymentsByCustomerAndAmountGreaterThanOne(customerId);
+      @PathVariable("id") Integer customerId, @PathParam("amount") Integer amount) {
+    return crudPaymentUseCase.findPaymentsByCustomerAndAmountGreaterThanOne(customerId, amount);
   }
 
 
