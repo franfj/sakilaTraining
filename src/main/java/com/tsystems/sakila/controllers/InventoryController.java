@@ -1,10 +1,18 @@
 package com.tsystems.sakila.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.tsystems.sakila.dto.Inventory;
 import com.tsystems.sakila.usecases.CrudInventoryUseCase;
 
+@RestController
+@RequestMapping(value = "/inventories")
 public class InventoryController {
 
   private final CrudInventoryUseCase crudInventoryUseCase;
@@ -14,6 +22,13 @@ public class InventoryController {
     super();
     this.crudInventoryUseCase = crudInventoryUseCase;
   }
+
+  @RequestMapping(value = "/film/{id}", method = RequestMethod.GET)
+  public List<Integer> getStoreWithFilm(@PathVariable("id") Integer filmId) {
+    return crudInventoryUseCase.getStoreWithFilm(filmId);
+  }
+
+
 
   public void getInventories() {
     System.out.println(crudInventoryUseCase.getInventories());

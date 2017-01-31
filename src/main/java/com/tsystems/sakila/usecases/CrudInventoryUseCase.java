@@ -1,7 +1,9 @@
 package com.tsystems.sakila.usecases;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,24 @@ public class CrudInventoryUseCase {
     super();
     this.inventoryRepository = inventoryRepository;
   }
+
+
+  public List<Integer> getStoreWithFilm(Integer filmId) {
+    List<Object> source = inventoryRepository.getStoreWithFilm(filmId);
+    List<Integer> result = new LinkedList<>();
+
+    result = source.stream().map(object -> Integer.parseInt(object.toString()))
+        .collect(Collectors.toList());
+
+    // for (Object object : source) {
+    // result.add(Integer.parseInt(object.toString()));
+    // }
+
+    return result;
+
+  }
+
+
 
   public List<Inventory> getInventories() {
     List<InventoryEntity> source = inventoryRepository.findAll();

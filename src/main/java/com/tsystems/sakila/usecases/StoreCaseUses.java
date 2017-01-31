@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tsystems.sakila.dto.StoreWithAddressAndCity;
+import com.tsystems.sakila.dto.StoreWithCountry;
 import com.tsystems.sakila.repositories.StoreRepository;
 
 @Component
@@ -21,7 +22,6 @@ public class StoreCaseUses {
   }
 
   public List<StoreWithAddressAndCity> getStoreWithAddressAndCity() {
-
     List<Object[]> queryResult = repo.getStoreWithAddressAndCity();
     List<StoreWithAddressAndCity> result = new LinkedList<>();
 
@@ -36,6 +36,26 @@ public class StoreCaseUses {
       storeWithStuff.setCity((String) objects[4]);
 
       result.add(storeWithStuff);
+    }
+
+
+    return result;
+  }
+
+
+
+  public List<StoreWithCountry> getStoreWithCountry(Integer storeId) {
+    List<Object[]> queryResult = repo.getStoreWithCountry(storeId);
+    List<StoreWithCountry> result = new LinkedList<>();
+
+    for (Object[] objects : queryResult) {
+
+      StoreWithCountry storeWithCountry = new StoreWithCountry();
+
+      storeWithCountry.setStoreId(Integer.parseInt(objects[0].toString()));
+      storeWithCountry.setCountry((String) objects[1]);
+
+      result.add(storeWithCountry);
     }
 
 
