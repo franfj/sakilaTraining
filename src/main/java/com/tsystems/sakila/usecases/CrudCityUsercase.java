@@ -30,6 +30,7 @@ public class CrudCityUsercase {
     City target = new City();
 
     cityToReturn = cityRepository.findOne(cityId);
+    target.setId(cityId);
     target.setCity(cityToReturn.getCity());
     target.setCountryId(cityToReturn.getCountryId());
 
@@ -72,6 +73,7 @@ public class CrudCityUsercase {
     List<City> citiesToReturn = new LinkedList<>();
     for (CityEntity city : citiesList) {
       City cityToAdd = new City();
+      cityToAdd.setId(city.getId());
       cityToAdd.setCity(city.getCity());
       cityToAdd.setCountryId(city.getCountryId());
       citiesToReturn.add(cityToAdd);

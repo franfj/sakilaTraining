@@ -24,6 +24,7 @@ public class CrudCustomerUseCase {
   public Customer createCustomer(Customer customerToCreate) {
 
     CustomerEntity customerEntity = new CustomerEntity();
+
     customerEntity.setFirstName(customerToCreate.getFirstName());
     customerEntity.setLastName(customerToCreate.getLastName());
     customerEntity.setEmail(customerToCreate.getEmail());
@@ -38,6 +39,7 @@ public class CrudCustomerUseCase {
     CustomerEntity customerEntity = customerRepository.findOne(customerId);
     Customer customer = new Customer();
 
+    customer.setCustomerId(customerEntity.getCustomerId());
     customer.setFirstName(customerEntity.getFirstName());
     customer.setLastName(customerEntity.getLastName());
     customer.setEmail(customerEntity.getEmail());
@@ -54,6 +56,7 @@ public class CrudCustomerUseCase {
 
       Customer customer = new Customer();
 
+      customer.setCustomerId(customerEntity.getCustomerId());
       customer.setFirstName(customerEntity.getFirstName());
       customer.setLastName(customerEntity.getLastName());
       customer.setEmail(customerEntity.getEmail());
@@ -67,6 +70,8 @@ public class CrudCustomerUseCase {
   public Customer updateCustomer(Integer customerId, Customer customerToUpdate) {
 
     CustomerEntity customerEntity = customerRepository.findOne(customerId);
+
+    customerEntity.setCustomerId(customerId);
     customerEntity.setFirstName(customerToUpdate.getFirstName());
     customerEntity.setLastName(customerToUpdate.getLastName());
     customerEntity.setEmail(customerToUpdate.getEmail());
