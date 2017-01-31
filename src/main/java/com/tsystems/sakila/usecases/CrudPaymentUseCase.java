@@ -1,5 +1,6 @@
 package com.tsystems.sakila.usecases;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,51 +12,69 @@ import com.tsystems.sakila.repositories.PaymentRepository;
 
 public class CrudPaymentUseCase {
 
-	private final PaymentRepository paymentRepository;
+  private final PaymentRepository paymentRepository;
 
-	public CrudPaymentUseCase(PaymentRepository paymentRepository) {
-		super();
-		this.paymentRepository = paymentRepository;
-	}
+  public CrudPaymentUseCase(PaymentRepository paymentRepository) {
+    super();
+    this.paymentRepository = paymentRepository;
+  }
 
-	public List<Payment> getPayments() {
-		List<PaymentEntity> source = paymentRepository.findAll();
-		List<Payment> result = new LinkedList<>();
+  public List<Payment> getPayments() {
+    List<PaymentEntity> source = paymentRepository.findAll();
+    List<Payment> result = new LinkedList<>();
 
-		for (PaymentEntity paymentEntityIterator : source) {
-			Payment newPayment = new Payment();
-			newPayment.setId(paymentEntityIterator.getId());
-			result.add(newPayment);
-		}
-		return result;
-	}
+    for (PaymentEntity paymentEntityIterator : source) {
+      Payment newPayment = new Payment();
+      newPayment.setId(paymentEntityIterator.getId());
+      result.add(newPayment);
+    }
+    return result;
+  }
 
-	public Payment getPaymentById(Integer id) {
+  public Payment getPaymentById(Integer id) {
 
-		Payment newPayment = new Payment();
-		newPayment.setId(paymentRepository.findById(id).getId());
-		return newPayment;
-	}
+    Payment newPayment = new Payment();
+    newPayment.setId(paymentRepository.findOne(id).getId());
+    return newPayment;
+  }
 
-	public void createPayment(CreatePayment paymentToCreate) {
+  public void createPayment(CreatePayment paymentToCreate) {
 
-		PaymentEntity paymentEntityToCreate = new PaymentEntity();
-		paymentEntityToCreate.setId(paymentToCreate.getId());
+    PaymentEntity paymentEntityToCreate = new PaymentEntity();
+    paymentEntityToCreate.setId(paymentToCreate.getId());
 
-		paymentRepository.save(paymentEntityToCreate);
-	}
+    paymentRepository.save(paymentEntityToCreate);
+  }
 
-	public void updatePayment(UpdatePayment paymentToUpdate, Integer id) {
+  public void updatePayment(UpdatePayment paymentToUpdate, Integer id) {
 
-		PaymentEntity newPaymentEntity = paymentRepository.findById(id);
-		newPaymentEntity.setId(paymentToUpdate.getId());
+    PaymentEntity newPaymentEntity = paymentRepository.findOne(id);
+    newPaymentEntity.setId(paymentToUpdate.getId());
 
-		paymentRepository.save(newPaymentEntity);
+    paymentRepository.save(newPaymentEntity);
 
-	}
+  }
 
-	public void removePayment(Integer id) {
-		paymentRepository.delete(id);
-	}
+  public void removePayment(Integer id) {
+    paymentRepository.delete(id);
+  }
+
+
+  public List<Payment> findPaymentsByCustomerAndAmountGreaterThanOne(Integer customerId) {
+    List<Payment> result = new ArrayList<>();
+    List<PaymentEntity> source =
+        paymentRepository.findPaymentsByCustomerAndAmountGreaterThanOne(customerId);
+
+    for (PaymentEntity paymentEntity : source) {
+      Payment newPayment = new Payment();
+
+      newPayment.setAmount(paymentEntity.getAmount());
+      newPayment.setId(paymentEntity.getId());
+
+      result.add(newPayment);
+    }
+
+    return result;
+  }
 
 }
