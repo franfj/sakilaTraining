@@ -17,20 +17,24 @@ import lombok.Data;
 @Data
 public class RentalEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "rental_id")
-  private Long rentalId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "rental_id")
+	private Long rentalId;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(columnDefinition = "inventory_id")
-  private InventoryEntity inventory;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(columnDefinition = "inventory_id")
+	private InventoryEntity inventory;
 
-  // @ManyToMany(fetch = FetchType.LAZY, mappedBy = "paymentId")
-  // private List<PaymentEntity> payments;
+	// @ManyToMany(fetch = FetchType.LAZY, mappedBy = "paymentId")
+	// private List<PaymentEntity> payments;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(columnDefinition = "customer_id")
-  private CustomerEntity customer;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(columnDefinition = "customer_id")
+	private CustomerEntity customer;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(columnDefinition = "staff_id")
+	private CustomerEntity staff;
 
 }
