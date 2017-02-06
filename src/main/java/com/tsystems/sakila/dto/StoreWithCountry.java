@@ -3,8 +3,9 @@ package com.tsystems.sakila.dto;
 import lombok.Data;
 
 @Data
-public class Country {
+public class StoreWithCountry {
 
-  private Integer id;
+  private Integer storeId;
   private String country;
+
 }

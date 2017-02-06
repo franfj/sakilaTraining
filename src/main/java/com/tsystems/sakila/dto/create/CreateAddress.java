@@ -1,11 +1,10 @@
-package com.tsystems.sakila.dto;
+package com.tsystems.sakila.dto.create;
 
 import lombok.Data;
 
 @Data
-public class Address {
+public class CreateAddress {
 
-  private Integer id;
   private String address;
   private String address2;
   private String district;

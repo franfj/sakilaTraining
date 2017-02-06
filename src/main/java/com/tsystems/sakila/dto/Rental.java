@@ -1,4 +1,4 @@
-package com.tsystems.sakila.dto.rental;
+package com.tsystems.sakila.dto;
 
 import lombok.Data;
 

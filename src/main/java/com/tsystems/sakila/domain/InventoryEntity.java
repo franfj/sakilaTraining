@@ -1,5 +1,7 @@
 package com.tsystems.sakila.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,11 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "inventory")
-@Data
 public class InventoryEntity {
 
   @Id
@@ -23,12 +22,35 @@ public class InventoryEntity {
   @Column(name = "inventory_id")
   private Long inventoryId;
 
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(columnDefinition = "store_id")
   private StoreEntity store;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "rentalId")
-  private RentalEntity rental;
+  private List<RentalEntity> rental;
+
+  public Long getInventoryId() {
+    return inventoryId;
+  }
+
+  public void setInventoryId(Long inventoryId) {
+    this.inventoryId = inventoryId;
+  }
+
+  public StoreEntity getStore() {
+    return store;
+  }
+
+  public void setStore(StoreEntity store) {
+    this.store = store;
+  }
+
+  public List<RentalEntity> getRental() {
+    return rental;
+  }
+
+  public void setRental(List<RentalEntity> rental) {
+    this.rental = rental;
+  }
 
 }

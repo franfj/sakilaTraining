@@ -1,11 +1,10 @@
-package com.tsystems.sakila.dto;
+package com.tsystems.sakila.dto.update;
 
 import lombok.Data;
 
 @Data
-public class City {
-  private Integer id;
+public class UpdateCity {
+
   private String city;
   private Integer countryId;
-
 }
