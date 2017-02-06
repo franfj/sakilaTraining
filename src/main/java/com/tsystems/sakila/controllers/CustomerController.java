@@ -41,7 +41,6 @@ public class CustomerController {
   public List<Customer> getAllCustomers() {
 
     return crudCustomerUseCase.getAllCustomers();
-
   }
 
   @RequestMapping(value = "/{customerId:\\d+}", method = RequestMethod.PUT)
@@ -49,12 +48,10 @@ public class CustomerController {
       @RequestBody Customer customerToUpdate) {
 
     return crudCustomerUseCase.updateCustomer(customerId, customerToUpdate);
-
   }
 
   @RequestMapping(value = "/{customerId:\\d+}", method = RequestMethod.DELETE)
   public void delteCustomer(@PathVariable("customerId") Integer customerId) {
-
     crudCustomerUseCase.deleteCustomer(customerId);
   }
 
